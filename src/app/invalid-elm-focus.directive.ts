@@ -4,8 +4,6 @@ import {
   HostListener,
   QueryList,
   ContentChildren,
-  Input,
-  Host
 } from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';
 
