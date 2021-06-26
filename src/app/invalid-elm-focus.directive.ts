@@ -3,7 +3,7 @@ import {
   ElementRef,
   HostListener,
   QueryList,
-  ContentChildren,
+  ContentChildren
 } from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';
 
