@@ -14,6 +14,9 @@ export class InvalidElmFocusDirective {
   @ContentChildren(NgModel, { descendants: true, read: ElementRef })
   inputFields: QueryList<ElementRef>;
 
+  @ContentChildren(NgModel, { descendants: true })
+  ngModles: QueryList<NgModel>;
+
   constructor(private _ngForm: NgForm) {}
 
   @HostListener('ngSubmit')
@@ -22,12 +25,11 @@ export class InvalidElmFocusDirective {
 
     this._ngForm.control.markAllAsTouched();
 
-    const invalidInputFields = this.inputFields.filter(field => {
-      return (field.nativeElement as HTMLElement).classList.contains(
-        'ng-invalid'
-      );
-    });
-
-    invalidInputFields[0].nativeElement.focus();
+    for (let i = 0; i < this.ngModles.length; i++) {
+      if (this.ngModles.get(i).control.errors) {
+        this.inputFields.get(i).nativeElement.focus();
+        break;
+      }
+    }
   }
 }
